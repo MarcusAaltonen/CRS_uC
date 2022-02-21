@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;CRS RC Car uC UFQ 32-pin&apos;" deleteContents="false" description="Delete resource &apos;CRS RC Car uC UFQ 32-pin&apos;" element1="/CRS RC Car uC UFQ 32-pin" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1645462051535"/>
+</session>
