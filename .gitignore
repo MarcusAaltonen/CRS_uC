@@ -1,4 +1,3 @@
-.metadata/
 *.index
 *.snap
 *.xmi
@@ -17,3 +16,5 @@
 *.xml
 *.o
 *.su
+.metadata/
+CRS RC Car uC UFQ 32-pin/Debug/

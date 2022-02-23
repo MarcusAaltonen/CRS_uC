@@ -3,5 +3,8 @@ main.c:133:6:SystemClock_Config	88	static
 main.c:173:13:MX_SPI1_Init	8	static
 main.c:210:13:MX_TIM2_Init	48	static
 main.c:280:13:MX_GPIO_Init	48	static
-main.c:304:6:HAL_TIM_IC_CaptureCallback	16	static
-main.c:364:6:Error_Handler	8	static,ignoring_inline_asm
+main.c:303:6:HAL_SPI1_TxCpltCallback	16	static
+main.c:308:6:HAL_SPI1_TxRxCpltCallback	16	static
+main.c:314:6:HAL_SPI1_RxCpltCallback	24	static
+main.c:327:6:HAL_TIM_IC_CaptureCallback	16	static
+main.c:387:6:Error_Handler	8	static,ignoring_inline_asm
