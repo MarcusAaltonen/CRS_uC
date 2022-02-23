@@ -1,33 +1,17 @@
-
 .metadata/
-CRS RC Car uC UFQ 32-pin/Debug/CRS RC Car uC UFQ 32-pin.map
-CRS RC Car uC UFQ 32-pin/Debug/CRS RC Car uC UFQ 32-pin.list
-CRS RC Car uC UFQ 32-pin/Debug/CRS RC Car uC UFQ 32-pin.elf
-CRS RC Car uC UFQ 32-pin/Debug/CRS RC Car uC UFQ 32-pin.bin
-CRS RC Car uC UFQ 32-pin/Debug/Core/Src/stm32l0xx_it.su
-CRS RC Car uC UFQ 32-pin/Debug/Core/Src/stm32l0xx_it.o
-CRS RC Car uC UFQ 32-pin/Debug/Core/Src/stm32l0xx_hal_msp.su
-CRS RC Car uC UFQ 32-pin/Debug/Core/Src/stm32l0xx_hal_msp.o
-CRS RC Car uC UFQ 32-pin/Debug/Core/Src/main.su
-CRS RC Car uC UFQ 32-pin/Debug/Core/Src/main.o
-CRS RC Car uC UFQ 32-pin/CRS RC Car uC UFQ 32-pin.ioc
-CRS RC Car uC UFQ 32-pin/.settings/language.settings.xml
-CRS RC Car uC UFQ 32-pin/.mxproject
-.metadata/version.ini
-.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
-.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.managedbuilder.core.prefs
-.metadata/.plugins/org.eclipse.core.resources/2.snap
-.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
-.metadata/.plugins/org.eclipse.core.resources/.root/2.tree
-.metadata/.plugins/org.eclipse.core.resources/.root/.markers.snap
-.metadata/.plugins/org.eclipse.core.resources/.projects/CRS RC Car uC UFQ 32-pin/.syncinfo.snap
-.metadata/.plugins/org.eclipse.core.resources/.projects/CRS RC Car uC UFQ 32-pin/.markers.snap
-.metadata/.plugins/org.eclipse.cdt.ui/global-build.log
-.metadata/.plugins/org.eclipse.cdt.ui/CRS RC Car uC UFQ 32-pin.build.log
-.metadata/.plugins/org.eclipse.cdt.core/CRS RC Car uC UFQ 32-pin.1645462051956.pdom
-.metadata/.plugins/org.eclipse.cdt.core/.log
-.metadata/.log
-.metadata/.ide.log
+*.index
+*.snap
+*.xmi
+*.resources
+*.map
+*.list
+*.elf
+*.bin
+*.su
+*.o
+*.ioc
+*.xml
+*.mxproject
 *.log
 *.snap
 *.xml
