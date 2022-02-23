@@ -32,6 +32,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define TIMCLOCK 131062
+#define PRESCALAR 16
+#define BUFFER_SIZE 8
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -46,6 +49,15 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
+// SPI buffer
+uint8_t RX_Buffer[BUFFER_SIZE] = {0};
+uint8_t TX_Buffer[BUFFER_SIZE] = {1,2,3,4,5,6,7,8};
+uint32_t IC_Val1 = 0;
+uint32_t IC_Val2 = 0;
+uint32_t Difference = 0;
+int Is_First_Captured = 0;
+float frequency = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -59,53 +71,6 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-#define TIMCLOCK 131062
-#define PRESCALAR 16
-
-uint32_t IC_Val1 = 0;
-uint32_t IC_Val2 = 0;
-uint32_t Difference = 0;
-int Is_First_Captured = 0;
-
-/* Measure Frequency */
-float frequency = 0;
-
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
-	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
-	{
-		if (Is_First_Captured==0) // if the first rising edge is not captured
-		{
-			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
-			IC_Val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // read the first value
-			Is_First_Captured = 1;  // set the first captured as true
-		}
-
-		else   // If the first rising edge is captured, now we will capture the second edge
-		{
-			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
-			IC_Val2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // read second value
-
-			if (IC_Val2 > IC_Val1)
-			{
-				Difference = IC_Val2-IC_Val1;
-			}
-
-			else if (IC_Val1 > IC_Val2)
-			{
-				Difference = (0xffff - IC_Val1) + IC_Val2;
-			}
-
-			float refClock = TIMCLOCK/(PRESCALAR);
-
-			frequency = refClock/Difference;
-
-			//__HAL_TIM_SET_COUNTER(htim, 0);  // reset the counter
-			Is_First_Captured = 0; // set it back to false
-		}
-	}
-}
 
 /* USER CODE END 0 */
 
@@ -140,8 +105,11 @@ int main(void)
   MX_SPI1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+
+  // Turn on LED
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8,GPIO_PIN_SET);
-  // start timer 2 and ch1
+
+  // Start Timer 2 and ch1
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_1);
   /* USER CODE END 2 */
@@ -153,10 +121,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
-
-	  //HAL_Delay(500);
-	  //timer_val = __HAL_TIM_GET_COUNTER(&htim2);
+	  HAL_SPI_Transmit (&hspi1, TX_Buffer, BUFFER_SIZE, 1000);
   }
   /* USER CODE END 3 */
 }
@@ -334,6 +299,61 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+// Hall sensor interrupt routine
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
+{
+	// check which encoder wheel was triggered
+	switch(htim->Channel)
+	{
+	  case HAL_TIM_ACTIVE_CHANNEL_1 : // Front Right
+
+		  	if (Is_First_Captured==0) // if the first rising edge is not captured
+			{
+				HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+				// Read the captured value from Capture Compare unit
+				IC_Val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // read the first value
+				Is_First_Captured = 1;  // set the first captured as true
+			}
+			else   // If the first rising edge is captured, now we will capture the second edge
+			{
+				HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+				IC_Val2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // read second value
+
+				if (IC_Val2 > IC_Val1)
+				{
+					Difference = IC_Val2-IC_Val1;
+				}
+
+				else if (IC_Val1 > IC_Val2)
+				{
+					Difference = (0xffff - IC_Val1) + IC_Val2;
+				}
+
+
+			//__HAL_TIM_SET_COUNTER(htim, 0);  // reset the counter
+			Is_First_Captured = 0; // set it back to false
+
+			}
+
+		 break;
+
+	  case HAL_TIM_ACTIVE_CHANNEL_2 : // Front Left
+
+		 break;
+
+	  case HAL_TIM_ACTIVE_CHANNEL_3 : // Back Right
+
+		 break;
+
+	  case HAL_TIM_ACTIVE_CHANNEL_4 : // Back Left
+
+		 break;
+
+	  default :
+		  break;
+	}
+}
 
 /* USER CODE END 4 */
 
