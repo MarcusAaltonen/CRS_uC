@@ -28,3 +28,8 @@ CRS RC Car uC UFQ 32-pin/.mxproject
 .metadata/.plugins/org.eclipse.cdt.core/.log
 .metadata/.log
 .metadata/.ide.log
+*.log
+*.snap
+*.xml
+*.o
+*.su
