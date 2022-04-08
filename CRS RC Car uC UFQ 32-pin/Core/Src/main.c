@@ -68,10 +68,13 @@ void capture_time(int channel, TIM_HandleTypeDef *htim);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t TX_Buffer[BUFFER_SIZE] = {0};
+ uint8_t TX_Buffer[BUFFER_SIZE] = {0};
+
 bool Edge_Captured[ENCODERS] = {false};
 uint32_t Edge_Time1[ENCODERS] = {0};
 uint32_t Edge_Time2[ENCODERS] = {0};
+uint16_t new_edge[ENCODERS] = {0,0,0,0};
+uint16_t old_edge[ENCODERS] = {0,0,0,0};
 uint32_t TIM_CHANNEL[ENCODERS] = {TIM_CHANNEL_1,TIM_CHANNEL_2,TIM_CHANNEL_3,TIM_CHANNEL_4};
 
 /* USER CODE END 0 */
@@ -117,6 +120,7 @@ int main(void)
   HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_2);
   HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_3);
   HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_4);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,7 +130,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	HAL_SPI_Transmit(&hspi1, TX_Buffer, BUFFER_SIZE+1, 1000);
+	HAL_SPI_Transmit(&hspi1, TX_Buffer, BUFFER_SIZE+1, 10000);
+
   }
   /* USER CODE END 3 */
 }
@@ -307,171 +312,54 @@ static void MX_GPIO_Init(void)
 
 void capture_time(int chl,TIM_HandleTypeDef *htim)
 {
-	uint32_t Difference = 0;
-	int temp = chl*2;
+	uint16_t difference = 0;
+	uint8_t index = chl*2;
+	new_edge[chl] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL[chl]); // get current timer
 
-	if (Edge_Captured[chl] == false) // if the first rising edge is not captured
+	if (new_edge[chl] > old_edge[chl] )
 	{
-		// Read the captured value from Capture Compare unit
-		Edge_Time1[chl] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL[chl]); // read the first value
-		Edge_Captured[chl] = true;  // set the first captured as true
+		difference = new_edge[chl] - old_edge[chl];
 	}
-	else   // If the first rising edge is captured, now we will capture the second edge
+
+	else if ( old_edge[chl] > new_edge[chl] )
 	{
-		Edge_Time2[chl] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL[chl]);  // read second value
-
-		if (Edge_Time2[chl] > Edge_Time1[chl])
-		{
-			Difference = Edge_Time2[chl]-Edge_Time1[chl];
-		}
-
-		else if (Edge_Time1[chl] > Edge_Time2[chl])
-		{
-			Difference = (0xffff - Edge_Time1[chl]) + Edge_Time2[chl];
-		}
-	TX_Buffer[temp] = (Difference & 0xFF00) >> 8 ;
-	TX_Buffer[temp+1] = (Difference & 0x00FF);
-
-	Edge_Captured[chl] = false; // set it back to false
-
+		difference = (0xffff - old_edge[chl]) + new_edge[chl];
 	}
+
+	old_edge[chl] = new_edge[chl]; // store current time for next trigg event
+
+	TX_Buffer[index] = (uint8_t)((difference & 0xFF00) >> 8 );
+	TX_Buffer[index+1] = (uint8_t)(difference & 0x00FF);
 
 }
 
 // Hall sensor interrupt routine
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
-	// check which encoder wheel was triggered
 	switch(htim->Channel)
 	{
 	  case HAL_TIM_ACTIVE_CHANNEL_1 : // Front Right
-		    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
-		    capture_time(ENCODERCHL1,htim);
-		    /*
-		    if (Edge_Captured[ENCODERCHL1] == false) // if the first rising edge is not captured
-			{
-				// Read the captured value from Capture Compare unit
-				Edge_Time1[ENCODERCHL1] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // read the first value
-				Edge_Captured[ENCODERCHL1] = true;  // set the first captured as true
-			}
-			else   // If the first rising edge is captured, now we will capture the second edge
-			{
-				Edge_Time2[ENCODERCHL1] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // read second value
-
-				if (Edge_Time2[ENCODERCHL1] > Edge_Time1[ENCODERCHL1])
-				{
-					Difference = Edge_Time2[ENCODERCHL1]-Edge_Time1[ENCODERCHL1];
-				}
-
-				else if (Edge_Time1[ENCODERCHL1] > Edge_Time2[ENCODERCHL1])
-				{
-					Difference = (0xffff - Edge_Time1[ENCODERCHL1]) + Edge_Time2[ENCODERCHL1];
-				}
-
-			TX_Buffer[0] = (Difference & 0xFF00) >> 8 ;
-			TX_Buffer[1] = (Difference & 0x00FF);
-
-			Edge_Captured[ENCODERCHL1] = false; // set it back to false
-
-			}
-			*/
+		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+		  capture_time(ENCODERCHL1,htim);
 
 		 break;
 
 	  case HAL_TIM_ACTIVE_CHANNEL_2 : // Front Left
-		  capture_time(ENCODERCHL2,htim);
-		  /*
-		  if (Edge_Captured[ENCODERCHL2] == false) // if the first rising edge is not captured
-			{
-				// Read the captured value from Capture Compare unit
-				Edge_Time1[ENCODERCHL2] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2); // read the first value
-				Edge_Captured[ENCODERCHL2] = true;  // set the first captured as true
-			}
-			else   // If the first rising edge is captured, now we will capture the second edge
-			{
-				Edge_Time2[ENCODERCHL2] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2);  // read second value
 
-				if (Edge_Time2[ENCODERCHL2] > Edge_Time1[ENCODERCHL2])
-				{
-					Difference = Edge_Time2[ENCODERCHL2]-Edge_Time1[ENCODERCHL2];
-				}
+		 capture_time(ENCODERCHL2,htim);
 
-				else if (Edge_Time1[ENCODERCHL2] > Edge_Time2[ENCODERCHL2])
-				{
-					Difference = (0xffff - Edge_Time1[ENCODERCHL2]) + Edge_Time2[ENCODERCHL2];
-				}
-
-			TX_Buffer[2] = (Difference & 0xFF00) >> 8 ;
-			TX_Buffer[3] = (Difference & 0x00FF);
-
-			Edge_Captured[ENCODERCHL2] = false; // set it back to false
-
-			}
-			*/
 		 break;
 
 	  case HAL_TIM_ACTIVE_CHANNEL_3 : // Rear Right
+
 		  capture_time(ENCODERCHL3,htim);
-		  /*
-		  if (Edge_Captured[ENCODERCHL3] == false) // if the first rising edge is not captured
-			{
-				// Read the captured value from Capture Compare unit
-				Edge_Time1[ENCODERCHL3] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_3); // read the first value
-				Edge_Captured[ENCODERCHL3] = true;  // set the first captured as true
-			}
-			else   // If the first rising edge is captured, now we will capture the second edge
-			{
-				Edge_Time2[ENCODERCHL3] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_3);  // read second value
 
-				if (Edge_Time2[ENCODERCHL3] > Edge_Time1[ENCODERCHL3])
-				{
-					Difference = Edge_Time2[ENCODERCHL3]-Edge_Time1[ENCODERCHL3];
-				}
-
-				else if (Edge_Time1[ENCODERCHL3] > Edge_Time2[ENCODERCHL3])
-				{
-					Difference = (0xffff - Edge_Time1[ENCODERCHL3]) + Edge_Time2[ENCODERCHL3];
-				}
-
-			TX_Buffer[4] = (Difference & 0xFF00) >> 8 ;
-			TX_Buffer[5] = (Difference & 0x00FF);
-
-			Edge_Captured[ENCODERCHL3] = false; // set it back to false
-
-			}
-			*/
 		 break;
 
 	  case HAL_TIM_ACTIVE_CHANNEL_4 : // Rear Left
+
 		  capture_time(ENCODERCHL4,htim);
-		  /*
-		  	if (Edge_Captured[ENCODERCHL4] == false) // if the first rising edge is not captured
-			{
-				// Read the captured value from Capture Compare unit
-				Edge_Time1[ENCODERCHL4] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_4); // read the first value
-				Edge_Captured[ENCODERCHL4] = true;  // set the first captured as true
-			}
-			else   // If the first rising edge is captured, now we will capture the second edge
-			{
-				Edge_Time2[ENCODERCHL4] = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_4);  // read second value
 
-				if (Edge_Time2[ENCODERCHL4] > Edge_Time1[ENCODERCHL4])
-				{
-					Difference = Edge_Time2[ENCODERCHL4]-Edge_Time1[ENCODERCHL4];
-				}
-
-				else if (Edge_Time1[ENCODERCHL4] > Edge_Time2[ENCODERCHL4])
-				{
-					Difference = (0xffff - Edge_Time1[ENCODERCHL4]) + Edge_Time2[ENCODERCHL4];
-				}
-
-			TX_Buffer[6] = (Difference & 0xFF00) >> 8 ;
-			TX_Buffer[7] = (Difference & 0x00FF);
-
-			Edge_Captured[ENCODERCHL4] = false; // set it back to false
-
-			}
-			*/
 		 break;
 
 	  default :
