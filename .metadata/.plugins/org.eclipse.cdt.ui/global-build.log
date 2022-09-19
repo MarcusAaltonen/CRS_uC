@@ -1,28 +1,4 @@
-12:31:12 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
-make -j4 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: CRS RC Car uC UFQ 32-pin.elf
- 
-arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
-arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
-arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
-   text	   data	    bss	    dec	    hex	filename
-  13084	     36	   1748	  14868	   3a14	CRS RC Car uC UFQ 32-pin.elf
-Finished building: default.size.stdout
- 
-Finished building: CRS RC Car uC UFQ 32-pin.bin
- 
-Finished building: CRS RC Car uC UFQ 32-pin.list
- 
-12:31:18 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
-make -j4 all 
-arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
-   text	   data	    bss	    dec	    hex	filename
-  13084	     36	   1748	  14868	   3a14	CRS RC Car uC UFQ 32-pin.elf
-Finished building: default.size.stdout
- 
-12:34:11 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+13:52:06 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
 make -j4 all 
 arm-none-eabi-gcc "../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.d" -MT"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o"
 arm-none-eabi-gcc "../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.d" -MT"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.o"
@@ -52,14 +28,14 @@ arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf
 arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
 arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
    text	   data	    bss	    dec	    hex	filename
-  13080	     36	   1748	  14864	   3a10	CRS RC Car uC UFQ 32-pin.elf
+  14172	     36	   1828	  16036	   3ea4	CRS RC Car uC UFQ 32-pin.elf
 Finished building: default.size.stdout
- 
 Finished building: CRS RC Car uC UFQ 32-pin.bin
+ 
  
 Finished building: CRS RC Car uC UFQ 32-pin.list
  
-14:04:55 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+14:13:56 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
 make -j4 all 
 arm-none-eabi-gcc "../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.d" -MT"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o"
 arm-none-eabi-gcc "../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.d" -MT"Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.o"
@@ -89,38 +65,109 @@ arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf
 arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
 arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
    text	   data	    bss	    dec	    hex	filename
-  12976	     36	   1748	  14760	   39a8	CRS RC Car uC UFQ 32-pin.elf
+  14172	     36	   1828	  16036	   3ea4	CRS RC Car uC UFQ 32-pin.elf
 Finished building: default.size.stdout
  
 Finished building: CRS RC Car uC UFQ 32-pin.bin
  
 Finished building: CRS RC Car uC UFQ 32-pin.list
  
-14:06:52 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+14:15:17 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
 make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CRS RC Car uC UFQ 32-pin.elf
+ 
 arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
+arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
+arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
    text	   data	    bss	    dec	    hex	filename
-  12976	     36	   1748	  14760	   39a8	CRS RC Car uC UFQ 32-pin.elf
+  14172	     36	   1828	  16036	   3ea4	CRS RC Car uC UFQ 32-pin.elf
 Finished building: default.size.stdout
  
-14:07:39 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+Finished building: CRS RC Car uC UFQ 32-pin.bin
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.list
+ 
+14:16:15 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
 make -j4 all 
 arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
    text	   data	    bss	    dec	    hex	filename
-  12976	     36	   1748	  14760	   39a8	CRS RC Car uC UFQ 32-pin.elf
+  14172	     36	   1828	  16036	   3ea4	CRS RC Car uC UFQ 32-pin.elf
 Finished building: default.size.stdout
  
-14:08:25 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+14:17:21 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
 make -j4 all 
 arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
    text	   data	    bss	    dec	    hex	filename
-  12976	     36	   1748	  14760	   39a8	CRS RC Car uC UFQ 32-pin.elf
+  14172	     36	   1828	  16036	   3ea4	CRS RC Car uC UFQ 32-pin.elf
 Finished building: default.size.stdout
  
-14:09:13 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+14:18:53 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
 make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CRS RC Car uC UFQ 32-pin.elf
+ 
 arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
+arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
+arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
    text	   data	    bss	    dec	    hex	filename
-  12976	     36	   1748	  14760	   39a8	CRS RC Car uC UFQ 32-pin.elf
+  14192	     36	   1828	  16056	   3eb8	CRS RC Car uC UFQ 32-pin.elf
 Finished building: default.size.stdout
+Finished building: CRS RC Car uC UFQ 32-pin.bin
+ 
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.list
+ 
+14:21:28 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CRS RC Car uC UFQ 32-pin.elf
+ 
+arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
+arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
+arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
+   text	   data	    bss	    dec	    hex	filename
+  14192	     36	   1828	  16056	   3eb8	CRS RC Car uC UFQ 32-pin.elf
+Finished building: default.size.stdout
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.bin
+Finished building: CRS RC Car uC UFQ 32-pin.list
+ 
+ 
+14:23:28 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CRS RC Car uC UFQ 32-pin.elf
+ 
+arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
+arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
+arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
+   text	   data	    bss	    dec	    hex	filename
+  14084	     36	   1820	  15940	   3e44	CRS RC Car uC UFQ 32-pin.elf
+Finished building: default.size.stdout
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.bin
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.list
+ 
+10:37:48 **** Incremental Build of configuration Debug for project CRS RC Car uC UFQ 32-pin ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L011xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CRS RC Car uC UFQ 32-pin.elf
+ 
+arm-none-eabi-size   CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf 
+arm-none-eabi-objdump -h -S  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  > "CRS RC Car uC UFQ 32-pin.list"
+arm-none-eabi-objcopy  -O binary  CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf  "CRS RC Car uC UFQ 32-pin.bin"
+   text	   data	    bss	    dec	    hex	filename
+  14084	     36	   1820	  15940	   3e44	CRS RC Car uC UFQ 32-pin.elf
+Finished building: default.size.stdout
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.bin
+ 
+Finished building: CRS RC Car uC UFQ 32-pin.list
  

@@ -1,8 +1,9 @@
-main.c:86:5:main	8	static
-main.c:143:6:SystemClock_Config	88	static
-main.c:183:13:MX_SPI1_Init	8	static
-main.c:220:13:MX_TIM2_Init	48	static
-main.c:290:13:MX_GPIO_Init	48	static
-main.c:313:6:capture_time	32	static
-main.c:337:6:HAL_TIM_IC_CaptureCallback	16	static
-main.c:376:6:Error_Handler	8	static,ignoring_inline_asm
+main.c:88:5:main	8	static
+main.c:147:6:SystemClock_Config	88	static
+main.c:187:13:MX_SPI1_Init	8	static
+main.c:224:13:MX_TIM2_Init	48	static
+main.c:292:13:MX_DMA_Init	16	static
+main.c:310:13:MX_GPIO_Init	48	static
+main.c:333:6:capture_time	32	static
+main.c:357:6:HAL_TIM_IC_CaptureCallback	16	static
+main.c:396:6:Error_Handler	8	static,ignoring_inline_asm

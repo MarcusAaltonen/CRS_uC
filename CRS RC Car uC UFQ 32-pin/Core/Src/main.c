@@ -34,7 +34,7 @@
 /* USER CODE BEGIN PD */
 #define TIMCLOCK 131062
 #define PRESCALAR 16
-#define BUFFER_SIZE 8
+#define BUFFERSIZE 8
 #define ENCODERS 4
 #define ENCODERCHL1 0
 #define ENCODERCHL2 1
@@ -50,6 +50,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
+DMA_HandleTypeDef hdma_spi1_tx;
 
 TIM_HandleTypeDef htim2;
 
@@ -61,6 +62,7 @@ TIM_HandleTypeDef htim2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_DMA_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 void capture_time(int channel, TIM_HandleTypeDef *htim);
@@ -68,7 +70,7 @@ void capture_time(int channel, TIM_HandleTypeDef *htim);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
- uint8_t TX_Buffer[BUFFER_SIZE] = {0};
+uint8_t TX_Buffer[BUFFERSIZE] = {0};
 
 bool Edge_Captured[ENCODERS] = {false};
 uint32_t Edge_Time1[ENCODERS] = {0};
@@ -107,6 +109,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_SPI1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
@@ -130,7 +133,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	HAL_SPI_Transmit(&hspi1, TX_Buffer, BUFFER_SIZE+1, 10000);
+	   HAL_SPI_Transmit_DMA(&hspi1,TX_Buffer, BUFFERSIZE);
+	   while(HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 
   }
   /* USER CODE END 3 */
@@ -283,6 +287,22 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel2_3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel2_3_IRQn);
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -378,9 +398,9 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
-  }
+  //while (1)
+  //{
+  //}
   /* USER CODE END Error_Handler_Debug */
 }
 
