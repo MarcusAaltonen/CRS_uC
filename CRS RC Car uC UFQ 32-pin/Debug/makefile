@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
+# Toolchain: GNU Tools for STM32 (10.3-2021.10)
 ################################################################################
 
 -include ../makefile.init
@@ -43,14 +43,14 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 EXECUTABLES += \
 CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf \
 
+MAP_FILES += \
+CRS\ RC\ Car\ uC\ UFQ\ 32-pin.map \
+
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
 CRS\ RC\ Car\ uC\ UFQ\ 32-pin.list \
-
-OBJCOPY_BIN += \
-CRS\ RC\ Car\ uC\ UFQ\ 32-pin.bin \
 
 
 # All Target
@@ -60,7 +60,7 @@ all: main-build
 main-build: CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf secondary-outputs
 
 # Tool invocations
-CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf: $(OBJS) $(USER_OBJS) C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS\ RC\ Car\ uC\ UFQ\ 32-pin\STM32L011K4UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf CRS\ RC\ Car\ uC\ UFQ\ 32-pin.map: $(OBJS) $(USER_OBJS) C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS\ RC\ Car\ uC\ UFQ\ 32-pin\STM32L011K4UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "CRS RC Car uC UFQ 32-pin.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\Marcus\Documents\GitHub\CRS_uC\CRS RC Car uC UFQ 32-pin\STM32L011K4UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CRS RC Car uC UFQ 32-pin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
@@ -75,17 +75,12 @@ CRS\ RC\ Car\ uC\ UFQ\ 32-pin.list: $(EXECUTABLES) makefile objects.list $(OPTIO
 	@echo 'Finished building: $@'
 	@echo ' '
 
-CRS\ RC\ Car\ uC\ UFQ\ 32-pin.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "CRS RC Car uC UFQ 32-pin.bin"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 # Other Targets
 clean:
-	-$(RM) CRS\ RC\ Car\ uC\ UFQ\ 32-pin.bin CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf CRS\ RC\ Car\ uC\ UFQ\ 32-pin.list CRS\\ RC\\ Car\\ uC\\ UFQ\\ 32-pin.elf default.size.stdout
+	-$(RM) CRS\ RC\ Car\ uC\ UFQ\ 32-pin.elf CRS\ RC\ Car\ uC\ UFQ\ 32-pin.list CRS\ RC\ Car\ uC\ UFQ\ 32-pin.map CRS\\ RC\\ Car\\ uC\\ UFQ\\ 32-pin.elf default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
