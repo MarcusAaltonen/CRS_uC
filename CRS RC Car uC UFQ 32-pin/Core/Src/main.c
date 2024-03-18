@@ -61,8 +61,8 @@ TIM_HandleTypeDef htim2;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_SPI1_Init(void);
 static void MX_DMA_Init(void);
+static void MX_SPI1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 void capture_time(int channel, TIM_HandleTypeDef *htim);
@@ -71,10 +71,11 @@ void capture_time(int channel, TIM_HandleTypeDef *htim);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint8_t TX_Buffer[BUFFERSIZE] = {0};
+uint8_t send_buffer[BUFFERSIZE] = {0};
 
-bool Edge_Captured[ENCODERS] = {false};
-uint32_t Edge_Time1[ENCODERS] = {0};
-uint32_t Edge_Time2[ENCODERS] = {0};
+//bool Edge_Captured[ENCODERS] = {false};
+//uint32_t Edge_Time1[ENCODERS] = {0};
+//uint32_t Edge_Time2[ENCODERS] = {0};
 uint16_t new_edge[ENCODERS] = {0,0,0,0};
 uint16_t old_edge[ENCODERS] = {0,0,0,0};
 uint32_t TIM_CHANNEL[ENCODERS] = {TIM_CHANNEL_1,TIM_CHANNEL_2,TIM_CHANNEL_3,TIM_CHANNEL_4};
@@ -128,12 +129,18 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int i=0;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	   HAL_SPI_Transmit_DMA(&hspi1,TX_Buffer, BUFFERSIZE);
+	  for (i=0;i<=BUFFERSIZE; i++ )
+	  {
+		  send_buffer[i] = TX_Buffer[i];
+	  }
+
+	   HAL_SPI_Transmit_DMA(&hspi1,send_buffer, BUFFERSIZE);
 	   while(HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 
   }
@@ -158,7 +165,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
   RCC_OscInitStruct.MSICalibrationValue = 0;
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_5;
+  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -236,9 +243,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 15;
+  htim2.Init.Prescaler = 16;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 65535;
+  htim2.Init.Period = 0xffff;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -260,7 +267,7 @@ static void MX_TIM2_Init(void)
   {
     Error_Handler();
   }
-  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_FALLING;
+  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
   sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
   sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
   sConfigIC.ICFilter = 0;
@@ -268,6 +275,7 @@ static void MX_TIM2_Init(void)
   {
     Error_Handler();
   }
+  sConfigIC.ICFilter = 0xf;
   if (HAL_TIM_IC_ConfigChannel(&htim2, &sConfigIC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
@@ -345,6 +353,8 @@ void capture_time(int chl,TIM_HandleTypeDef *htim)
 	{
 		difference = (0xffff - old_edge[chl]) + new_edge[chl];
 	}
+	else
+		return;
 
 	old_edge[chl] = new_edge[chl]; // store current time for next trigg event
 
@@ -359,7 +369,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 	switch(htim->Channel)
 	{
 	  case HAL_TIM_ACTIVE_CHANNEL_1 : // Front Right
-		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+		  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
 		  capture_time(ENCODERCHL1,htim);
 
 		 break;

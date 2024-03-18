@@ -1924,3 +1924,63 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\marcus\Docume
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-04-13 10:23:22.867
 !MESSAGE Indexed 'CRS RC Car uC UFQ 32-pin' (23 sources, 100 headers) in 2,76 sec: 8.312 declarations; 42.196 references; 7 unresolved inclusions; 320 syntax errors; 1.151 unresolved names (2,2%)
+!SESSION 2023-08-25 09:25:57.540 -----------------------------------------------
+eclipse.buildId=Version 1.12.0
+java.version=11.0.17
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-08-25 09:26:34.793
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-25 09:26:34.793
+!MESSAGE Log4j2 initialized with config file C:\Users\Marcus\Documents\GitHub\CRS_uC\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-25 09:26:43.048
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-02-22 14:10:55.728 -----------------------------------------------
+eclipse.buildId=Version 1.12.0
+java.version=11.0.17
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-02-22 14:11:38.468
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-02-22 14:11:38.476
+!MESSAGE Log4j2 initialized with config file C:\Users\Marcus\Documents\GitHub\CRS_uC\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-02-22 14:11:46.545
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-03-14 10:43:17.659 -----------------------------------------------
+eclipse.buildId=Version 1.12.0
+java.version=11.0.17
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-03-14 10:43:43.932
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-03-14 10:43:43.932
+!MESSAGE Log4j2 initialized with config file C:\Users\Marcus\Documents\GitHub\CRS_uC\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-03-14 10:43:50.986
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-03-18 14:23:52.356 -----------------------------------------------
+eclipse.buildId=Version 1.12.0
+java.version=11.0.17
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-03-18 14:24:22.461
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-03-18 14:24:22.461
+!MESSAGE Log4j2 initialized with config file C:\Users\Marcus\Documents\GitHub\CRS_uC\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-03-18 14:24:31.103
+!MESSAGE Started RMI Server, listening on port 41337
