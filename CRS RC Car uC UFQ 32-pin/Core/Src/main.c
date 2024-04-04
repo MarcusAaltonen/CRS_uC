@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -129,19 +130,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int i=0;
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  for (i=0;i<=BUFFERSIZE; i++ )
-	  {
-		  send_buffer[i] = TX_Buffer[i];
-	  }
-
-	   HAL_SPI_Transmit_DMA(&hspi1,send_buffer, BUFFERSIZE);
-	   while(HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
+	  memcpy(send_buffer, TX_Buffer, BUFFERSIZE);
+	  HAL_SPI_Transmit_DMA(&hspi1,send_buffer, BUFFERSIZE);
+	  while(HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 
   }
   /* USER CODE END 3 */
